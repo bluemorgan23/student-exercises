@@ -1,0 +1,11 @@
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/bin/Debug/netcoreapp2.2/student-exercises.deps.json
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/bin/Debug/netcoreapp2.2/student-exercises.runtimeconfig.json
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/bin/Debug/netcoreapp2.2/student-exercises.runtimeconfig.dev.json
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/bin/Debug/netcoreapp2.2/student-exercises.dll
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/bin/Debug/netcoreapp2.2/student-exercises.pdb
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.csprojAssemblyReference.cache
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.csproj.CoreCompileInputs.cache
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.AssemblyInfoInputs.cache
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.AssemblyInfo.cs
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.dll
+/Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.pdb
