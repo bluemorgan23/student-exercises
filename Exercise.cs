@@ -12,23 +12,24 @@ namespace student_exercises
         }
         public string Name {get; set;}
         public string Language {get; set;}
-        public List<Student> ListOfStudents = new List<Student>();
+        public List<Student> ListOfStudents {get; set;} = new List<Student>();
 
         public void whichStudentsWhichExercise(List<Student> students)
         {
-            
             
             Console.WriteLine($"Students working on {this.Name}: ");
 
             foreach(Student student in students)
             {
-
-                if(student.ExerciseList.Contains(this))
+                foreach(Exercise exercise in student.ExerciseList)
                 {
-                    ListOfStudents.Add(student);
-                        
+                    if(exercise.Equals(this))
+                    {
+                        ListOfStudents.Add(student);
+                        Console.WriteLine(student.getFullName());
+                    }
                 }
-                Console.WriteLine(student.getFullName());
+                
             }
         }
     }

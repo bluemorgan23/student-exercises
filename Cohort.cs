@@ -9,7 +9,7 @@ namespace student_exercises
             Name = name;
         }
         public string Name {get; set;}
-        public List<Student> ListOfStudents = new List<Student>();
-        public List<Instructor> ListOfInstructors = new List<Instructor>();
+        public List<Student> ListOfStudents {get; set;} = new List<Student>();
+        public List<Instructor> ListOfInstructors {get; set;} = new List<Instructor>();
     }
 }
