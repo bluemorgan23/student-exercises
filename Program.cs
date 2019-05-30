@@ -105,13 +105,13 @@ namespace student_exercises
             Jisie.assignExercise(Billy, natParks);
             Jisie.assignExercise(Josh, classExercise);
             Jisie.assignExercise(Josh, reactComponents);
-            Jisie.assignExercise(Billy, dictionaryExercise);
-            Jisie.assignExercise(Billy, reactComponents);
+            Jisie.assignExercise(Brian, dictionaryExercise);
+            Jisie.assignExercise(Brian, reactComponents);
 
-            foreach(Exercise exercise in Chris.ExerciseList)
-            {
-                Console.WriteLine(exercise.Name);
-            }
+            // foreach(Exercise exercise in Chris.ExerciseList)
+            // {
+            //     Console.WriteLine(exercise.Name);
+            // }
 
             // Create a list of students. Add all of the Student instances to it.
 
@@ -128,6 +128,19 @@ namespace student_exercises
             };
 
             // Generate a report that displays which students are working on which exercises.
+            foreach(Student student in students)
+            {
+                student.getNameAndExercises(student);
+                Console.WriteLine("- - - - - - - - -");
+            }
+
+            foreach(Exercise exercise in exercises)
+            {
+                exercise.whichStudentsWhichExercise(students);
+                Console.WriteLine("- - - - - - - - -");
+            }
+
+            
         }
     }
 }
