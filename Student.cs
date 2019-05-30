@@ -13,6 +13,6 @@ namespace student_exercises
         public string LastName {get; set;}
         public string Slack {get; set;}
         public Cohort Cohort {get; set;}
-        public List<Exercise> ExerciseList {get; set;}
+        public List<Exercise> ExerciseList = new List<Exercise>();
     }
 }
