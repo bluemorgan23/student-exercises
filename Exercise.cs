@@ -5,16 +5,18 @@ namespace student_exercises
 {
     class Exercise
     {
-        public Exercise(string name, string language)
+        public Exercise(string name, string language, int id)
         {
             Name = name;
             Language = language;
+            Id = id;
         }
+        public int Id { get; set; }
         public string Name {get; set;}
         public string Language {get; set;}
         public List<Student> ListOfStudents {get; set;} = new List<Student>();
 
-        public void whichStudentsWhichExercise(List<Student> students)
+        public void ListStudentsOnExercise(List<Student> students)
         {
             
             Console.WriteLine($"Students working on {this.Name}: ");
@@ -26,7 +28,7 @@ namespace student_exercises
                     if(exercise.Equals(this))
                     {
                         ListOfStudents.Add(student);
-                        Console.WriteLine(student.getFullName());
+                        Console.WriteLine(student.GetFullName());
                     }
                 }
                 

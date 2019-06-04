@@ -9,43 +9,40 @@ namespace student_exercises
         {
 
             /*
-                Create 4 or more Exercises (arg1 = exercise name, arg2 = langauge)
+                Create 4 or more Exercises (arg1 = exercise name, arg2 = langauge, arg3 = Id)
              */
 
-            Exercise classExercise = new Exercise("Classes and Type Definitions", "C#");
+            Exercise classExercise = new Exercise("Classes and Type Definitions", "C#", 1);
 
-            Exercise dictionaryExercise = new Exercise("Dictionaries", "C#");
+            Exercise dictionaryExercise = new Exercise("Dictionaries", "C#", 2);
 
-            Exercise apiExercise = new Exercise("Using JSON", "JavaScript");
+            Exercise apiExercise = new Exercise("Using JSON", "JavaScript", 3);
 
-            Exercise webScrapingExercise = new Exercise("Data Scraping", "Python");
+            Exercise webScrapingExercise = new Exercise("Data Scraping", "Python", 4);
 
-            Exercise fizzbuzz = new Exercise("FizzBuzz", "JavaScript");
+            Exercise fizzbuzz = new Exercise("FizzBuzz", "JavaScript", 5);
 
-            Exercise reactComponents = new Exercise("Components in React", "ReactJS");
+            Exercise reactComponents = new Exercise("Components in React", "ReactJS", 6);
 
-            Exercise natParks = new Exercise("National Parks List", "JavaScript");
-
-            Console.WriteLine($"{apiExercise.Name}, language: {apiExercise.Language}");
+            Exercise natParks = new Exercise("National Parks List", "JavaScript", 7);
 
             /*
-                Create 3 or more cohorts
+                Create 3 or more cohorts args = (Name, Id)
             */
 
-            Cohort C31 = new Cohort("Cohort 31");
-            Cohort C33 = new Cohort("Cohort 33");
-            Cohort C26 = new Cohort("Cohort 36");
-
-            Console.WriteLine(C31.Name);
+            Cohort C31 = new Cohort("Cohort 31", 31);
+            Cohort C33 = new Cohort("Cohort 33", 33);
+            Cohort C26 = new Cohort("Cohort 36", 36);
 
             /*
                 Create 4 or more students and assign them to one of the cohorts, add slack handle
+                args = (FirstName, LastName, Id)
              */
 
-            Student Chris = new Student("Chris", "Morgan");
-            Student Josh = new Student("Josh", "Hibary");
-            Student Brian = new Student("Brian", "Jobe");
-            Student Billy = new Student("Billy", "Mathison");
+            Student Chris = new Student("Chris", "Morgan", 1);
+            Student Josh = new Student("Josh", "Hibary", 2);
+            Student Brian = new Student("Brian", "Jobe", 3);
+            Student Billy = new Student("Billy", "Mathison", 4);
 
             // slack handles
 
@@ -61,11 +58,11 @@ namespace student_exercises
             Brian.Cohort = C26;
             Billy.Cohort = C31;
 
-            // Create 3 instructors
+            // Create 3 instructors args = (FirstName, LastName, Specialty, Id)
 
-            Instructor Andy = new Instructor("Andy", "Collins", "Jokes");
-            Instructor Kristen = new Instructor("Kristen", "Norris", "Cupcakes");
-            Instructor Jisie = new Instructor("Jisie", "David", "Traveling");
+            Instructor Andy = new Instructor("Andy", "Collins", "Jokes", 1);
+            Instructor Kristen = new Instructor("Kristen", "Norris", "Cupcakes", 2);
+            Instructor Jisie = new Instructor("Jisie", "David", "Traveling", 3);
 
             // Assign them to cohorts
 
@@ -81,37 +78,32 @@ namespace student_exercises
 
             // Have each instructor assign 2 exercises to each of the students
 
-            Andy.assignExercise(Chris, webScrapingExercise);
-            Andy.assignExercise(Chris, apiExercise);
-            Andy.assignExercise(Billy, classExercise);
-            Andy.assignExercise(Billy, dictionaryExercise);
-            Andy.assignExercise(Josh, webScrapingExercise);
-            Andy.assignExercise(Josh, dictionaryExercise);
-            Andy.assignExercise(Brian, classExercise);
-            Andy.assignExercise(Brian, apiExercise);
+            Andy.AssignExercise(Chris, webScrapingExercise);
+            Andy.AssignExercise(Chris, apiExercise);
+            Andy.AssignExercise(Billy, classExercise);
+            Andy.AssignExercise(Billy, dictionaryExercise);
+            Andy.AssignExercise(Josh, webScrapingExercise);
+            Andy.AssignExercise(Josh, dictionaryExercise);
+            Andy.AssignExercise(Brian, classExercise);
+            Andy.AssignExercise(Brian, apiExercise);
 
-            Kristen.assignExercise(Chris, natParks);
-            Kristen.assignExercise(Chris, dictionaryExercise);
-            Kristen.assignExercise(Billy, webScrapingExercise);
-            Kristen.assignExercise(Billy, reactComponents);
-            Kristen.assignExercise(Josh, fizzbuzz);
-            Kristen.assignExercise(Josh, natParks);
-            Kristen.assignExercise(Brian, fizzbuzz);
-            Kristen.assignExercise(Brian, natParks);
+            Kristen.AssignExercise(Chris, natParks);
+            Kristen.AssignExercise(Chris, dictionaryExercise);
+            Kristen.AssignExercise(Billy, webScrapingExercise);
+            Kristen.AssignExercise(Billy, reactComponents);
+            Kristen.AssignExercise(Josh, fizzbuzz);
+            Kristen.AssignExercise(Josh, natParks);
+            Kristen.AssignExercise(Brian, fizzbuzz);
+            Kristen.AssignExercise(Brian, natParks);
 
-            Jisie.assignExercise(Chris, classExercise);
-            Jisie.assignExercise(Chris, reactComponents);
-            Jisie.assignExercise(Billy, fizzbuzz);
-            Jisie.assignExercise(Billy, natParks);
-            Jisie.assignExercise(Josh, classExercise);
-            Jisie.assignExercise(Josh, reactComponents);
-            Jisie.assignExercise(Brian, dictionaryExercise);
-            Jisie.assignExercise(Brian, reactComponents);
-
-            // foreach(Exercise exercise in Chris.ExerciseList)
-            // {
-            //     Console.WriteLine(exercise.Name);
-            // }
+            Jisie.AssignExercise(Chris, classExercise);
+            Jisie.AssignExercise(Chris, reactComponents);
+            Jisie.AssignExercise(Billy, fizzbuzz);
+            Jisie.AssignExercise(Billy, natParks);
+            Jisie.AssignExercise(Josh, classExercise);
+            Jisie.AssignExercise(Josh, reactComponents);
+            Jisie.AssignExercise(Brian, dictionaryExercise);
+            Jisie.AssignExercise(Brian, reactComponents);
 
             // Create a list of students. Add all of the Student instances to it.
 
@@ -130,14 +122,23 @@ namespace student_exercises
             // Generate a report that displays which students are working on which exercises.
             foreach(Student student in students)
             {
-                student.getNameAndExercises(student);
+                student.GetNameAndExercises(student);
                 Console.WriteLine("- - - - - - - - -");
             }
 
             foreach(Exercise exercise in exercises)
             {
-                exercise.whichStudentsWhichExercise(students);
+                exercise.ListStudentsOnExercise(students);
                 Console.WriteLine("- - - - - - - - -");
+
+                // Console.WriteLine($"Students working on {exercise.Name}:");
+
+                // foreach(Student student in exercise.ListOfStudents)
+                // {
+                //     Console.WriteLine(student.GetFullName());
+                // }
+                
+                // Console.WriteLine("- - - - - - - - -");
             }
 
             
