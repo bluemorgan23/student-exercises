@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace student_exercises
 {
@@ -54,7 +55,7 @@ namespace student_exercises
             // adding them to cohorts
 
             Chris.Cohort = C31;
-            Josh.Cohort = C33;
+            Josh.Cohort = C31;
             Brian.Cohort = C26;
             Billy.Cohort = C31;
 
@@ -68,7 +69,7 @@ namespace student_exercises
 
             Andy.Cohort = C31;
             Kristen.Cohort = C26;
-            Jisie.Cohort = C33;
+            Jisie.Cohort = C31;
 
             // Assign slack handles
 
@@ -141,7 +142,117 @@ namespace student_exercises
                 // Console.WriteLine("- - - - - - - - -");
             }
 
+            /*
+                    * * * * * * * * PART 2 * * * * * * * * *
+            */
+
+            // Create 4 new lists of students, exercises, cohorts, and instructors
+
+            List<Student> students2 = new List<Student>() {
+                Chris, Billy, Brian, Josh
+            };
+
+            List<Exercise> exercises2 = new List<Exercise>() {
+                dictionaryExercise, classExercise, apiExercise, fizzbuzz, webScrapingExercise, reactComponents, natParks
+            };
+
+            List<Cohort> cohorts = new List<Cohort>() {
+                C26, C31, C33
+            };
+
+            List<Instructor> instructors = new List<Instructor>() {
+                Andy, Jisie, Kristen
+            };
+
+            // 1. List exercises for the JavaScript language by using the Where() LINQ method.
+
+            IEnumerable<Exercise> listOfExercises = exercises2.Where(e => e.Language == "JavaScript");
+
+            Console.WriteLine("List of JavaScript Exercises: ");
+
+            foreach(Exercise e in listOfExercises)
+            {
+                Console.WriteLine($"{e.Name} is a {e.Language} exercise");
+            }
+
+            Console.WriteLine("- - - - - - - - -");
+
+            // 2. List students in a particular cohort by using the Where() LINQ method.
             
+            IEnumerable<Student> studentsInC31 = students2.Where(s => s.Cohort == C31);
+
+            Console.WriteLine("Students in Cohort 31: ");
+
+            foreach(Student s in studentsInC31)
+            {
+                Console.WriteLine(s.GetFullName());
+            }
+
+            Console.WriteLine("- - - - - - - - -");
+
+            // 3. List instructors in a particular cohort by using the Where() LINQ method.
+
+            IEnumerable<Instructor> instructorsOfC31 = instructors.Where(s => s.Cohort == C31);
+
+            Console.WriteLine("Instructors of Cohort 31: ");
+
+            foreach(Instructor i in instructorsOfC31)
+            {
+                Console.WriteLine(i.FirstName + " " + i.LastName);
+            }
+
+            Console.WriteLine("- - - - - - - - -");
+
+            // 4. Sort students by their last name
+
+            Console.WriteLine("Students in order by last name: ");
+
+            IEnumerable<Student> orderedStudents = students2.OrderBy(s => s.LastName);
+
+            foreach(Student s in orderedStudents)
+            {
+                Console.WriteLine(s.GetFullName());
+            }
+
+            Console.WriteLine("- - - - - - - - -");
+
+            // 5. Display any students that aren't working on any exercises
+
+            Student noExStudent = new Student("Sue", "Doe", 5);
+            noExStudent.Slack = "suedoe55";
+            noExStudent.Cohort = C33;
+            students2.Add(noExStudent);
+
+            IEnumerable<Student> whoHasNoExercises = students2.Where(s => s.ExerciseList.Count == 0);
+
+            Console.WriteLine("List of students with no exercises: ");
+
+            foreach(Student s in whoHasNoExercises)
+            {
+                Console.WriteLine(s.GetFullName());
+            }
+
+            Console.WriteLine("- - - - - - - - -");
+
+            // 6. Which student is working on the most exercises? Make sure one of your students has more exercises than the others.
+
+            Andy.AssignExercise(Chris, apiExercise);
+
+            Console.WriteLine("Most Exercises: ");
+
+            Student studentWithMost = students2.Single(s => s.ExerciseList.Count == students2.Max(student => student.ExerciseList.Count));
+
+            Console.WriteLine(studentWithMost.GetFullName());
+
+            Console.WriteLine("- - - - - - - - -");
+
+            // 7. How many students in each cohort.
+
+            Console.WriteLine("How many students in each cohort");
+
+            cohorts.ForEach(c => Console.WriteLine($"{c.Name} has {(students2.Where(s => s.Cohort == c)).Count()}"));
+
+
         }
     }
 }
