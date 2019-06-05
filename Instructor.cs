@@ -2,7 +2,7 @@ using System;
 
 namespace student_exercises
 {
-    class Instructor
+    public class Instructor : NSSPerson
     {
         public Instructor(string firstName, string lastName, string specialty, int id)
         {
@@ -12,11 +12,9 @@ namespace student_exercises
             Id = id;
         }
         public int Id { get; set; }
-        public string FirstName {get; set;}
-        public string LastName {get; set;}
+        
         public string Specialty {get; set;}
-        public string Slack {get; set;}
-        public Cohort Cohort {get; set;}
+      
         public void AssignExercise(Student student, Exercise exercise)
         {
             student.ExerciseList.Add(exercise);
