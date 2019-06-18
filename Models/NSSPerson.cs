@@ -1,6 +1,6 @@
 using System;
 
-namespace student_exercises
+namespace student_exercises.Models
 {
     public class NSSPerson
     {

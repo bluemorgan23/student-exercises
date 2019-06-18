@@ -1,9 +1,10 @@
 using System;
 
-namespace student_exercises
+namespace student_exercises.Models
 {
     public class Instructor : NSSPerson
     {
+        /*
         public Instructor(string firstName, string lastName, string specialty, int id)
         {
             FirstName = firstName;
@@ -11,6 +12,7 @@ namespace student_exercises
             Specialty = specialty;
             Id = id;
         }
+        */
         public int Id { get; set; }
         
         public string Specialty {get; set;}

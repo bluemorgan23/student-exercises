@@ -1,17 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using student_exercises.Models;
+using student_exercises.Data;
 
 namespace student_exercises
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
 
+            Repository repo = new Repository();
+
+            // List all the exercises
+            List<Exercise> exercises = repo.GetAllExercises();
+
+            Console.WriteLine("List of all exercises:");
+
+            exercises.ForEach(e => Console.WriteLine($"{e.Id}. {e.ExerciseName} in {e.ExerciseLanguage}"));
+
+            List<Exercise> exByLang = repo.GetExercisesByLanguage("SQL");
+
+            Console.WriteLine();
+            Console.WriteLine("List of exercises by language (SQL is currently passed in):");
+
+            exByLang.ForEach(e => Console.WriteLine($"{e.Id}. {e.ExerciseName}"));
+
+            Console.WriteLine();
+
+            // CREATE NEW EXERCISE THAT WILL BE ADDED TO THE DATABASE. WILL LIST ALL THE EXERCISES AFTER IT IS ADDED
+
+            Exercise newExercise = new Exercise
+            {
+                ExerciseName = "Using ADO.NET",
+                ExerciseLanguage = "C#"
+            };
+
+            repo.CreateExercise(newExercise);
+
+            List<Exercise> exercisesUpdated = repo.GetAllExercises();
+
+            Console.WriteLine("List of exercises after addition:");
+
+            exercisesUpdated.ForEach(e => Console.WriteLine($"{e.Id}. {e.ExerciseName} in {e.ExerciseLanguage}"));
+
+            Console.WriteLine();
+
+            Console.WriteLine("List of instructors with their cohort:");
+
+            List<Instructor> instructors = repo.GetInstructorsWithCohort();
+
+            instructors.ForEach(i => Console.WriteLine($"{i.Id}. {i.FirstName} {i.LastName} with {i.Cohort.CohortName}"));
+
+            Console.WriteLine();
+            Console.WriteLine("Adding another instructor to the database and assigning a cohort:");
+
+            List<Cohort> cohorts = repo.GetAllCohorts();
+
+            Cohort newCohort = cohorts.First(c => c.CohortName == "Cohort 31");
+
+            Instructor newInstructor = new Instructor
+            {
+                FirstName = "Toni",
+                LastName = "Hart"
+            };
+
+            repo.AddInstructorWithCohort(newInstructor, newCohort);
+
+            List<Instructor> newListOfInstructors = repo.GetInstructorsWithCohort();
+
+            newListOfInstructors.ForEach(i => Console.WriteLine($"{i.Id}. {i.FirstName} {i.LastName} with {i.Cohort.CohortName}"));
+
+
+            Console.WriteLine();
+
+            Console.WriteLine("List of all students: ");
+
+            List<Student> students = repo.GetAllStudents();
+
+            students.ForEach(s => Console.WriteLine($"{s.Id}. {s.GetFullName()}"));
+
+
+            Student harry = students.First(s => s.FirstName == "Harry");
+
+            Console.WriteLine();
+
+            harry.ExerciseList.Add(newExercise);
+
+            Console.WriteLine($"{harry.GetFullName()} has exercises: ");
+            harry.ExerciseList.ForEach(e => Console.WriteLine($"{e.Id}. {e.ExerciseName}"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             /*
                 Create 4 or more Exercises (arg1 = exercise name, arg2 = langauge, arg3 = Id)
-             */
+             
+
+        
 
             Exercise classExercise = new Exercise("Classes and Type Definitions", "C#", 1);
 
@@ -29,7 +126,7 @@ namespace student_exercises
 
             /*
                 Create 3 or more cohorts args = (Name, Id)
-            */
+            
 
             Cohort C31 = new Cohort("Cohort 31", 31);
             Cohort C33 = new Cohort("Cohort 33", 33);
@@ -38,7 +135,7 @@ namespace student_exercises
             /*
                 Create 4 or more students and assign them to one of the cohorts, add slack handle
                 args = (FirstName, LastName, Id)
-             */
+             
 
             Student Chris = new Student("Chris", "Morgan", 1);
             Student Josh = new Student("Josh", "Hibary", 2);
@@ -144,7 +241,7 @@ namespace student_exercises
 
             /*
                     * * * * * * * * PART 2 * * * * * * * * *
-            */
+            
 
             // Create 4 new lists of students, exercises, cohorts, and instructors
 
@@ -251,6 +348,8 @@ namespace student_exercises
             Console.WriteLine("How many students in each cohort");
 
             cohorts.ForEach(c => Console.WriteLine($"{c.Name} has {(students2.Where(s => s.Cohort == c)).Count()}"));
+
+            */
 
 
         }

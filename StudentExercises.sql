@@ -95,5 +95,14 @@ SELECT * FROM Exercise;
 
 SELECT * FROM StudentExercise;
 
+SELECT
+    s.FirstName,
+    s.LastName,
+    e.ExerciseName,
+    e.ExerciseLanguage
+    FROM StudentExercise se
+    JOIN Student s ON s.Id = se.StudentId
+    JOIN Exercise e ON e.Id = se.ExerciseId;
+
 
 

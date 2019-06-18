@@ -1,25 +1,26 @@
 using System;
 using System.Collections.Generic;
 
-namespace student_exercises
+namespace student_exercises.Models
 {
     public class Exercise
     {
-        public Exercise(string name, string language, int id)
+       /* public Exercise(string name, string language, int id)
         {
-            Name = name;
-            Language = language;
+            ExerciseName = name;
+            ExerciseLanguage = language;
             Id = id;
         }
+        */
         public int Id { get; set; }
-        public string Name {get; set;}
-        public string Language {get; set;}
+        public string ExerciseName {get; set;}
+        public string ExerciseLanguage {get; set;}
         public List<Student> ListOfStudents {get; set;} = new List<Student>();
 
         public void ListStudentsOnExercise(List<Student> students)
         {
             
-            Console.WriteLine($"Students working on {this.Name}: ");
+            Console.WriteLine($"Students working on {this.ExerciseName}: ");
 
             foreach(Student student in students)
             {

@@ -9,3 +9,14 @@
 /Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.AssemblyInfo.cs
 /Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.dll
 /Users/blue/Projects/NSS/workspace/csharp/exercises/student-exercises/obj/Debug/netcoreapp2.2/student-exercises.pdb
+C:\Users\bluem\Documents\projects\student-exercises\obj\Debug\netcoreapp2.2\student-exercises.csprojAssemblyReference.cache
+C:\Users\bluem\Documents\projects\student-exercises\obj\Debug\netcoreapp2.2\student-exercises.csproj.CoreCompileInputs.cache
+C:\Users\bluem\Documents\projects\student-exercises\obj\Debug\netcoreapp2.2\student-exercises.AssemblyInfoInputs.cache
+C:\Users\bluem\Documents\projects\student-exercises\obj\Debug\netcoreapp2.2\student-exercises.AssemblyInfo.cs
+C:\Users\bluem\Documents\projects\student-exercises\obj\Debug\netcoreapp2.2\student-exercises.dll
+C:\Users\bluem\Documents\projects\student-exercises\obj\Debug\netcoreapp2.2\student-exercises.pdb
+C:\Users\bluem\Documents\projects\student-exercises\bin\Debug\netcoreapp2.2\student-exercises.deps.json
+C:\Users\bluem\Documents\projects\student-exercises\bin\Debug\netcoreapp2.2\student-exercises.runtimeconfig.json
+C:\Users\bluem\Documents\projects\student-exercises\bin\Debug\netcoreapp2.2\student-exercises.runtimeconfig.dev.json
+C:\Users\bluem\Documents\projects\student-exercises\bin\Debug\netcoreapp2.2\student-exercises.dll
+C:\Users\bluem\Documents\projects\student-exercises\bin\Debug\netcoreapp2.2\student-exercises.pdb
