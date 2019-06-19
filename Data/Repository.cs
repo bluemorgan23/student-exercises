@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using student_exercises.Models;
 
 /// <summary>
@@ -251,6 +252,166 @@ namespace student_exercises.Data
                     reader.Close();
 
                     return students;
+                }
+            }
+        }
+
+        public void AssignExercise(Student student, Exercise exercise)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = $"INSERT INTO StudentExercise (ExerciseId, StudentId) VALUES (@ExerciseId, @StudentId)";
+                    cmd.Parameters.Add(new SqlParameter("@ExerciseId", exercise.Id));
+                    cmd.Parameters.Add(new SqlParameter("@StudentId", student.Id));
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public List<Student> StudentsCohortsAndExercises()
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT
+                                    s.Id,
+                                    s.FirstName,
+                                    s.LastName,
+                                    se.StudentId AS StudentId,
+                                    c.Id,
+                                    e.ExerciseName,
+                                    e.ExerciseLanguage,
+                                    c.CohortName
+                                    FROM StudentExercise se
+                                    JOIN Student s ON s.Id = se.StudentId
+                                    JOIN Exercise e ON e.Id = se.ExerciseId
+                                    LEFT JOIN Cohort c ON c.Id = s.CohortId; ";
+
+                    List<Student> students = new List<Student>();
+
+                    List<Exercise> exercises = new List<Exercise>();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Exercise exercise = new Exercise
+                        {
+                            ExerciseName = reader.GetString(reader.GetOrdinal("ExerciseName")),
+                            ExerciseLanguage = reader.GetString(reader.GetOrdinal("ExerciseLanguage"))
+                        };
+
+                        exercises.Add(exercise);
+
+                        Student student = new Student
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            ExerciseList = exercises.Where(e => reader.GetInt32(reader.GetOrdinal("StudentId")) == reader.GetInt32(reader.GetOrdinal("Id"))).ToList(),
+                            Cohort = new Cohort
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                CohortName = reader.GetString(reader.GetOrdinal("CohortName"))
+                            }
+                        };
+
+                        students.Add(student);
+                    }
+
+                    reader.Close();
+
+                    return students;
+                }
+            }
+        }
+
+        public List<Student> GetStudentsWithCohort()
+        {
+
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT
+                                            s.Id AS InstId,
+                                            s.FirstName,
+                                            s.LastName,
+                                            s.CohortId,
+                                            c.CohortName,
+                                            c.Id AS CoId
+                                            FROM Student s
+                                            LEFT JOIN Cohort c ON c.Id = s.CohortId";
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    List<Student> students = new List<Student>();
+
+                    while (reader.Read())
+                    {
+                        Student student = new Student
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("InstId")),
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            Cohort = new Cohort
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("CoId")),
+                                CohortName = reader.GetString(reader.GetOrdinal("CohortName"))
+                            },
+                        };
+
+
+                        students.Add(student);
+                    }
+
+                    reader.Close();
+                    return students;
+                }
+            }
+        }
+
+        public void AssignExerciseToCohort(Exercise exercise, Cohort cohort)
+        {
+
+            //List<Student> studentsCohorts = this.GetStudentsWithCohort().Where(s => s.CohortId == cohort.Id).ToList();
+
+            List<Student> studentExercises = this.StudentsCohortsAndExercises().Where(s => s.Cohort.Id == cohort.Id).ToList();
+
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+
+                    studentExercises.ForEach(student =>
+                    {
+                        if(student.ExerciseList.Contains(exercise) == false)
+                        {
+                            cmd.CommandText = $"INSERT INTO StudentExercise (StudentId, ExerciseId) VALUES (@StudentId, @ExerciseId)";
+                            cmd.Parameters.Add(new SqlParameter("@StudentId", student.Id));
+                            cmd.Parameters.Add(new SqlParameter("@ExerciseId", exercise.Id));
+                            cmd.ExecuteNonQuery();
+                        }
+                         else
+                        {
+                            Console.WriteLine("Didn't add any");
+                            cmd.ExecuteNonQuery();
+                        }
+                    });
+
+                   
                 }
             }
         }
